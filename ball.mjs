@@ -24,6 +24,15 @@ export class Ball extends Sprite {
             }
         }
 
+        const rightPaddle = this.app.state.paddles[1];
+        if (this.x > rightPaddle.x - (rightPaddle.width * .5)) {
+            const halfPaddleHeight = rightPaddle.height * .5;
+            if (this.y < rightPaddle.y + halfPaddleHeight
+                && this.y > rightPaddle.y - halfPaddleHeight) {
+                this.direction = -this.direction;
+            }
+        }
+
         const bounds = this.app.state.container.getBounds();
         const inside = bounds.rectangle.intersects(this.getBounds().rectangle);
         // const inside = bounds.containsPoint(this.x, this.y);
