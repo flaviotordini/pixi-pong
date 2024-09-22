@@ -8,9 +8,13 @@ export class Ball extends Sprite {
         this.anchor.set(0.5);
         this.width = app.state.container.width / 50;
         this.height = this.width;
-        this.x = app.state.container.width * Math.random();
-        this.y = app.state.container.height * Math.random();
         this.speed = 10;
+        this.initPos();
+    }
+
+    initPos() {
+        this.x = this.app.state.container.width * Math.random();
+        this.y = this.app.state.container.height * Math.random();
         this.direction = Math.random() * 360;
     }
 
@@ -21,6 +25,8 @@ export class Ball extends Sprite {
             if (this.y < leftPaddle.y + halfPaddleHeight
                 && this.y > leftPaddle.y - halfPaddleHeight) {
                 this.direction = -this.direction;
+            } else {
+                this.initPos();
             }
         }
 
@@ -30,6 +36,8 @@ export class Ball extends Sprite {
             if (this.y < rightPaddle.y + halfPaddleHeight
                 && this.y > rightPaddle.y - halfPaddleHeight) {
                 this.direction = -this.direction;
+            } else {
+                this.initPos();
             }
         }
 
