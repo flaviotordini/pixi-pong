@@ -24,7 +24,12 @@ export class Ball extends Sprite {
             const halfPaddleHeight = leftPaddle.height * .5;
             if (this.y < leftPaddle.y + halfPaddleHeight
                 && this.y > leftPaddle.y - halfPaddleHeight) {
-                this.direction = -this.direction;
+
+                const impactY = this.y - (leftPaddle.y - halfPaddleHeight);
+                const spinDegrees = (impactY * 90 / leftPaddle.height) - 45;
+
+                this.direction = -this.direction + spinDegrees;
+
             } else {
                 this.initPos();
             }
@@ -35,7 +40,12 @@ export class Ball extends Sprite {
             const halfPaddleHeight = rightPaddle.height * .5;
             if (this.y < rightPaddle.y + halfPaddleHeight
                 && this.y > rightPaddle.y - halfPaddleHeight) {
-                this.direction = -this.direction;
+
+                const impactY = this.y - (rightPaddle.y - halfPaddleHeight);
+                const spinDegrees = (impactY * 90 / rightPaddle.height) - 45;
+
+                this.direction = -this.direction - spinDegrees;
+
             } else {
                 this.initPos();
             }
