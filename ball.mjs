@@ -51,12 +51,11 @@ export class Ball extends Sprite {
             }
         }
 
-        const bounds = this.app.state.container.getBounds();
-        const inside = bounds.rectangle.intersects(this.getBounds().rectangle);
-        // const inside = bounds.containsPoint(this.x, this.y);
-        if (!inside) {
+        if (this.y - this.height / 2 <= 0 ||
+            this.y + this.height / 2 >= this.app.state.container.height) {
             this.direction = 180 - this.direction;
         }
+
         super.tick(delta);
     }
 }
