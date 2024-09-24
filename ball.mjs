@@ -8,7 +8,6 @@ export class Ball extends Sprite {
         this.anchor.set(0.5);
         this.width = app.state.container.width / 50;
         this.height = this.width;
-        this.speed = 10;
         this.initPos();
     }
 
@@ -16,6 +15,7 @@ export class Ball extends Sprite {
         this.x = this.app.state.container.width * Math.random();
         this.y = this.app.state.container.height * Math.random();
         this.direction = Math.random() * 360;
+        this.speed = 10;
     }
 
     tick(delta) {
@@ -27,8 +27,10 @@ export class Ball extends Sprite {
 
                 const impactY = this.y - (leftPaddle.y - halfPaddleHeight);
                 const spinDegrees = (impactY * 90 / leftPaddle.height) - 45;
-
                 this.direction = -this.direction + spinDegrees;
+
+                const speedIncrement = (impactY * 5 / leftPaddle.height);
+                this.speed += speedIncrement;
 
             } else {
                 this.initPos();
@@ -43,8 +45,10 @@ export class Ball extends Sprite {
 
                 const impactY = this.y - (rightPaddle.y - halfPaddleHeight);
                 const spinDegrees = (impactY * 90 / rightPaddle.height) - 45;
-
                 this.direction = -this.direction - spinDegrees;
+
+                const speedIncrement = (impactY * 5 / rightPaddle.height);
+                this.speed += speedIncrement;
 
             } else {
                 this.initPos();
