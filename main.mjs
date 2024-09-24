@@ -32,19 +32,19 @@ import { Paddle } from "./paddle.mjs";
     const paddlesConfs = [
         {
             isLeft: true,
-            fire: ' ',
-            left: 'ArrowLeft',
-            right: 'ArrowRight',
-            up: 'ArrowUp',
-            down: 'ArrowDown'
-        },
-        {
-            isLeft: false,
             fire: 'Shift',
             left: 'a',
             right: 'd',
             up: 'w',
             down: 's'
+        },
+        {
+            isLeft: false,
+            fire: ' ',
+            left: 'ArrowLeft',
+            right: 'ArrowRight',
+            up: 'ArrowUp',
+            down: 'ArrowDown'
         }
     ];
     for (const conf of paddlesConfs) {
