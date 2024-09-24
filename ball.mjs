@@ -20,10 +20,13 @@ export class Ball extends Sprite {
 
     tick(delta) {
         const leftPaddle = this.app.state.paddles[0];
-        if (this.x < leftPaddle.x + (leftPaddle.width * .5)) {
+        const leftXLimit = leftPaddle.x + (leftPaddle.width * .5);
+        if (this.x < leftXLimit) {
             const halfPaddleHeight = leftPaddle.height * .5;
             if (this.y < leftPaddle.y + halfPaddleHeight
                 && this.y > leftPaddle.y - halfPaddleHeight) {
+
+                this.x = leftXLimit;
 
                 const impactY = this.y - (leftPaddle.y - halfPaddleHeight);
                 const spinDegrees = (impactY * 90 / leftPaddle.height) - 45;
@@ -38,10 +41,13 @@ export class Ball extends Sprite {
         }
 
         const rightPaddle = this.app.state.paddles[1];
-        if (this.x > rightPaddle.x - (rightPaddle.width * .5)) {
+        const rightXLimit = rightPaddle.x - (rightPaddle.width * .5);
+        if (this.x > rightXLimit) {
             const halfPaddleHeight = rightPaddle.height * .5;
             if (this.y < rightPaddle.y + halfPaddleHeight
                 && this.y > rightPaddle.y - halfPaddleHeight) {
+
+                this.x = rightXLimit;
 
                 const impactY = this.y - (rightPaddle.y - halfPaddleHeight);
                 const spinDegrees = (impactY * 90 / rightPaddle.height) - 45;
