@@ -55,9 +55,12 @@ export class Ball extends Sprite {
             }
         }
 
-        if (this.y - this.height / 2 <= 0 ||
-            this.y + this.height / 2 >= this.app.state.container.height) {
+        if (this.y - this.height / 2 <= 0) {
             this.direction = 180 - this.direction;
+            this.y = 0 + this.height / 2;
+        } else if (this.y + this.height / 2 >= this.app.state.container.height) {
+            this.direction = 180 - this.direction;
+            this.y = this.app.state.container.height - this.height / 2;
         }
 
         super.tick(delta);
