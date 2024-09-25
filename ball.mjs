@@ -1,6 +1,9 @@
 import { Sprite } from "./sprite.js";
 import * as PIXI from './pixi.min.mjs';
 
+const BASE_SPEED = 10;
+const maxSpeedIncrement = 5;
+
 export class Ball extends Sprite {
     constructor(app) {
         super(app);
@@ -15,7 +18,7 @@ export class Ball extends Sprite {
         this.x = this.app.state.container.width * Math.random();
         this.y = this.app.state.container.height * Math.random();
         this.direction = Math.random() * 360;
-        this.speed = 10;
+        this.speed = BASE_SPEED;
     }
 
     tick(delta) {
@@ -32,8 +35,10 @@ export class Ball extends Sprite {
                 const spinDegrees = (impactY * 90 / leftPaddle.height) - 45;
                 this.direction = -this.direction + spinDegrees;
 
-                const speedIncrement = (impactY * 5 / leftPaddle.height);
-                this.speed += speedIncrement;
+                const distanceFromPaddleCenter = Math.abs(leftPaddle.y - this.y);
+                // distanceFromPaddleCenter : maxDistance = x : maxSpeedIncrement
+                const speedIncrement = (distanceFromPaddleCenter * maxSpeedIncrement / halfPaddleHeight);
+                this.speed = BASE_SPEED + speedIncrement;
 
             } else {
                 this.initPos();
@@ -53,8 +58,10 @@ export class Ball extends Sprite {
                 const spinDegrees = (impactY * 90 / rightPaddle.height) - 45;
                 this.direction = -this.direction - spinDegrees;
 
-                const speedIncrement = (impactY * 5 / rightPaddle.height);
-                this.speed += speedIncrement;
+                const distanceFromPaddleCenter = Math.abs(rightPaddle.y - this.y);
+                // distanceFromPaddleCenter : maxDistance = x : maxSpeedIncrement
+                const speedIncrement = (distanceFromPaddleCenter * maxSpeedIncrement / halfPaddleHeight);
+                this.speed = BASE_SPEED + speedIncrement;
 
             } else {
                 this.initPos();
