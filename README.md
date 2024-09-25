@@ -7,3 +7,4 @@ Pong game made with PixiJS.
 - fix initial ball direction
 - max paddles bounce range
 - points, turns, match
+- remove duplicate paddles bounce code
