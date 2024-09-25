@@ -5,4 +5,5 @@ Pong game made with PixiJS.
 ## TODO
 
 - fix initial ball direction
-- variable ball speed
+- max paddles bounce range
+- points, turns, match
