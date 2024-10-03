@@ -16,9 +16,12 @@ export class Ball extends Sprite {
     }
 
     initPos() {
-        this.x = this.app.state.container.width * Math.random();
+        this.x = this.app.state.container.width * 0.5;
         this.y = this.app.state.container.height * Math.random();
-        this.direction = Math.random() * 360;
+        this.direction = Math.random() * 90 + 45;
+        if (this.app.state.turn) {
+            this.direction += 180;
+        }
         this.speed = BASE_SPEED;
         this.visible = true;
     }
