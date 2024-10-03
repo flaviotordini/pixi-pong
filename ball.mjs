@@ -1,8 +1,8 @@
 import { Sprite } from "./sprite.js";
 import * as PIXI from './pixi.min.mjs';
 
-const BASE_SPEED = 15;
-const maxSpeedIncrement = 5;
+const BASE_SPEED = 10;
+const maxSpeedIncrement = 7;
 
 export class Ball extends Sprite {
     constructor(app) {
