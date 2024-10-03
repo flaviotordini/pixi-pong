@@ -8,3 +8,4 @@ Pong game made with PixiJS.
 - max paddles bounce range
 - points, turns, match
 - remove duplicate paddles bounce code
+- sound
