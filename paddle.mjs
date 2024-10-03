@@ -9,6 +9,7 @@ export class Paddle extends Sprite {
         this.anchor.set(0.5);
         this.width = app.state.container.width / 50;
         this.height = this.width * 4;
+        this.points = 0;
 
         if (conf.isLeft) {
             this.x = this.width;

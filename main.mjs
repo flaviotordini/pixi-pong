@@ -26,7 +26,7 @@ import { Paddle } from "./paddle.mjs";
         }
     });
 
-    const ball = new Ball(app);
+    app.state.ball = new Ball(app);
 
     app.state.paddles = [];
     const paddlesConfs = [
@@ -67,4 +67,15 @@ import { Paddle } from "./paddle.mjs";
         }
     }
 
+    startMatch(app);
+
 })()
+
+function startMatch(app) {
+    for (const paddle of app.state.paddles) {
+        paddle.points = 0;
+    }
+
+    app.state.turn = Math.random() < 0.5;
+    app.state.ball.initPos();
+}

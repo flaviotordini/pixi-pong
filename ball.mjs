@@ -11,7 +11,8 @@ export class Ball extends Sprite {
         this.anchor.set(0.5);
         this.width = app.state.container.width / 50;
         this.height = this.width;
-        this.initPos();
+        this.visible = false;
+        this.speed = 0;
     }
 
     initPos() {
@@ -19,6 +20,7 @@ export class Ball extends Sprite {
         this.y = this.app.state.container.height * Math.random();
         this.direction = Math.random() * 360;
         this.speed = BASE_SPEED;
+        this.visible = true;
     }
 
     tick(delta) {
@@ -41,7 +43,7 @@ export class Ball extends Sprite {
                 this.speed = BASE_SPEED + speedIncrement;
 
             } else {
-                this.initPos();
+                if (this.visible) this.initPos();
             }
         }
 
@@ -64,7 +66,7 @@ export class Ball extends Sprite {
                 this.speed = BASE_SPEED + speedIncrement;
 
             } else {
-                this.initPos();
+                if (this.visible) this.initPos();
             }
         }
 
