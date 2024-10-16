@@ -1,5 +1,6 @@
 import { Sprite } from "./sprite.js";
 import * as PIXI from './pixi.min.mjs';
+import { sound } from './pixi-sound.mjs';
 
 const BASE_SPEED = 10;
 const maxSpeedIncrement = 7;
@@ -13,6 +14,8 @@ export class Ball extends Sprite {
         this.height = this.width;
         this.visible = false;
         this.speed = 0;
+
+        sound.add('paddle', './paddle1.mp3');
     }
 
     initPos() {
@@ -45,6 +48,8 @@ export class Ball extends Sprite {
                 const speedIncrement = (distanceFromPaddleCenter * maxSpeedIncrement / halfPaddleHeight);
                 this.speed = BASE_SPEED + speedIncrement;
 
+                sound.play('paddle');
+
             } else {
                 if (this.visible) this.initPos();
             }
@@ -67,6 +72,8 @@ export class Ball extends Sprite {
                 // distanceFromPaddleCenter : maxDistance = x : maxSpeedIncrement
                 const speedIncrement = (distanceFromPaddleCenter * maxSpeedIncrement / halfPaddleHeight);
                 this.speed = BASE_SPEED + speedIncrement;
+
+                sound.play('paddle');
 
             } else {
                 if (this.visible) this.initPos();
