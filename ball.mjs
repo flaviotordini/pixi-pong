@@ -51,6 +51,7 @@ export class Ball extends Sprite {
                 sound.play('paddle');
 
             } else {
+                this.app.state.turn = !this.app.state.turn;
                 if (this.visible) this.initPos();
             }
         }
@@ -76,6 +77,7 @@ export class Ball extends Sprite {
                 sound.play('paddle');
 
             } else {
+                this.app.state.turn = !this.app.state.turn;
                 if (this.visible) this.initPos();
             }
         }
