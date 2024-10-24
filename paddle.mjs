@@ -18,6 +18,12 @@ export class Paddle extends Sprite {
         }
 
         this.y = app.state.container.height * .5;
+
+        const pointsText = new PIXI.Text({ text: 'Basic text in pixi' });
+        pointsText.anchor.set(0.5);
+        pointsText.x = conf.isLeft ? app.state.container.width / 4 : app.state.container.width / 4 * 3;
+        pointsText.y = this.height;
+        app.state.container.addChild(pointsText);
     }
 
     tick(delta) {
