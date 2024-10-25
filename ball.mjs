@@ -53,6 +53,7 @@ export class Ball extends Sprite {
             } else {
                 this.app.state.turn = !this.app.state.turn;
                 if (this.visible) this.initPos();
+                this.app.state.paddles[1].incrementPoints();
             }
         }
 
@@ -79,6 +80,7 @@ export class Ball extends Sprite {
             } else {
                 this.app.state.turn = !this.app.state.turn;
                 if (this.visible) this.initPos();
+                this.app.state.paddles[0].incrementPoints();
             }
         }
 
