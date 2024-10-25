@@ -4,8 +4,6 @@ Pong game made with PixiJS.
 
 ## TODO
 
-- fix initial ball direction
 - max paddles bounce range
-- points, turns, match
+- start, end match
 - remove duplicate paddles bounce code
-- sound
