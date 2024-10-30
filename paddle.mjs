@@ -1,5 +1,7 @@
 import { Sprite } from "./sprite.js";
 import * as PIXI from './pixi.min.mjs';
+import { Ball } from "./ball.mjs";
+import { sound } from './pixi-sound.mjs';
 
 export class Paddle extends Sprite {
     constructor(app, conf) {
@@ -30,6 +32,8 @@ export class Paddle extends Sprite {
         this.pointsText.y = this.height;
         this.pointsText.alpha = .5;
         app.state.container.addChild(this.pointsText);
+
+        sound.add(conf.id, './' + conf.id + '.mp3');
     }
 
     incrementPoints() {
@@ -38,7 +42,39 @@ export class Paddle extends Sprite {
     }
 
     tick(delta) {
+        const maxSpeedIncrement = 7;
         const halfPaddleHeight = this.height / 2;
+
+        const paddle = this;
+        const ball = this.app.state.ball;
+        const factor = this.conf.isLeft ? 1 : -1;
+        const xLimit = paddle.x + (paddle.width * .5) * factor;
+
+        if (ball.x * factor < xLimit * factor) {
+            if (ball.y < paddle.y + halfPaddleHeight
+                && ball.y > paddle.y - halfPaddleHeight) {
+
+                ball.x = xLimit;
+
+                const impactY = ball.y - (paddle.y - halfPaddleHeight);
+                const spinDegrees = (impactY * 90 / paddle.height) - 45;
+                ball.direction = -ball.direction + spinDegrees * factor;
+
+                const distanceFromPaddleCenter = Math.abs(paddle.y - ball.y);
+                // distanceFromPaddleCenter : maxDistance = x : maxSpeedIncrement
+                const speedIncrement = (distanceFromPaddleCenter * maxSpeedIncrement / halfPaddleHeight);
+                ball.speed = Ball.BASE_SPEED + speedIncrement;
+
+                sound.play(this.conf.id);
+
+            } else {
+                this.app.state.turn = !this.app.state.turn;
+                if (ball.visible) ball.initPos();
+                const otherPaddleIndex = this.conf.isLeft ? 1 : 0;
+                this.app.state.paddles[otherPaddleIndex].incrementPoints();
+            }
+        }
+
         const topLimit = this.y - halfPaddleHeight < 0;
         if (topLimit) {
             console.log("topLimit");
@@ -46,7 +82,7 @@ export class Paddle extends Sprite {
             this.y = halfPaddleHeight;
             return;
         }
-        
+
         const bottomLimit = this.y + halfPaddleHeight > this.app.state.container.height;
         if (bottomLimit) {
             console.log("bottomLimit");

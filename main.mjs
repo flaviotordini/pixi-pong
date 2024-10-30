@@ -31,6 +31,7 @@ import { Paddle } from "./paddle.mjs";
     app.state.paddles = [];
     const paddlesConfs = [
         {
+            id: "paddle1",
             isLeft: true,
             fire: 'Shift',
             left: 'a',
@@ -39,6 +40,7 @@ import { Paddle } from "./paddle.mjs";
             down: 's'
         },
         {
+            id: "paddle2",
             isLeft: false,
             fire: ' ',
             left: 'ArrowLeft',
