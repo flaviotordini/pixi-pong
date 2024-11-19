@@ -42,7 +42,7 @@ export class Paddle extends Sprite {
     }
 
     tick(delta) {
-        const maxSpeedIncrement = 7;
+        const maxSpeedIncrement = 12;
         const halfPaddleHeight = this.height / 2;
 
         const paddle = this;
