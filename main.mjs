@@ -1,6 +1,7 @@
 import * as PIXI from './pixi.min.mjs';
 import { Ball } from "./ball.mjs";
 import { Paddle } from "./paddle.mjs";
+import { Menu } from './menu.mjs';
 
 // Asynchronous IIFE
 (async () => {
@@ -69,15 +70,6 @@ import { Paddle } from "./paddle.mjs";
         }
     }
 
-    startMatch(app);
+    const menu = new Menu(app);
 
 })()
-
-function startMatch(app) {
-    for (const paddle of app.state.paddles) {
-        paddle.points = 0;
-    }
-
-    app.state.turn = Math.random() < 0.5;
-    app.state.ball.initPos();
-}
