@@ -50,28 +50,30 @@ export class Paddle extends Sprite {
         const factor = this.conf.isLeft ? 1 : -1;
         const xLimit = paddle.x + (paddle.width * .5) * factor;
 
-        if (ball.x * factor < xLimit * factor) {
-            if (ball.y < paddle.y + halfPaddleHeight
-                && ball.y > paddle.y - halfPaddleHeight) {
+        if (ball.visible) {
+            if (ball.x * factor < xLimit * factor) {
+                if (ball.y < paddle.y + halfPaddleHeight
+                    && ball.y > paddle.y - halfPaddleHeight) {
 
-                ball.x = xLimit;
+                    ball.x = xLimit;
 
-                const impactY = ball.y - (paddle.y - halfPaddleHeight);
-                const spinDegrees = (impactY * 90 / paddle.height) - 45;
-                ball.direction = -ball.direction + spinDegrees * factor;
+                    const impactY = ball.y - (paddle.y - halfPaddleHeight);
+                    const spinDegrees = (impactY * 90 / paddle.height) - 45;
+                    ball.direction = -ball.direction + spinDegrees * factor;
 
-                const distanceFromPaddleCenter = Math.abs(paddle.y - ball.y);
-                // distanceFromPaddleCenter : maxDistance = x : maxSpeedIncrement
-                const speedIncrement = (distanceFromPaddleCenter * maxSpeedIncrement / halfPaddleHeight);
-                ball.speed = Ball.BASE_SPEED + speedIncrement;
+                    const distanceFromPaddleCenter = Math.abs(paddle.y - ball.y);
+                    // distanceFromPaddleCenter : maxDistance = x : maxSpeedIncrement
+                    const speedIncrement = (distanceFromPaddleCenter * maxSpeedIncrement / halfPaddleHeight);
+                    ball.speed = Ball.BASE_SPEED + speedIncrement;
 
-                sound.play(this.conf.id);
+                    sound.play(this.conf.id);
 
-            } else {
-                this.app.state.turn = !this.app.state.turn;
-                if (ball.visible) ball.initPos();
-                const otherPaddleIndex = this.conf.isLeft ? 1 : 0;
-                this.app.state.paddles[otherPaddleIndex].incrementPoints();
+                } else {
+                    this.app.state.turn = !this.app.state.turn;
+                    ball.initPos();
+                    const otherPaddleIndex = this.conf.isLeft ? 1 : 0;
+                    this.app.state.paddles[otherPaddleIndex].incrementPoints();
+                }
             }
         }
 
