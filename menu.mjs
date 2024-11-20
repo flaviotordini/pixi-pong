@@ -28,7 +28,7 @@ export class Menu extends PIXI.Container {
             this.visible = false;
 
             for (const paddle of app.state.paddles) {
-                paddle.points = 0;
+                paddle.resetPoints();
             }
         
             app.state.turn = Math.random() < 0.5;

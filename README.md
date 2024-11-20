@@ -5,7 +5,7 @@ Pong game made with PixiJS.
 ## TODO
 
 - max paddles bounce range
-- end match
+- paddle flicker on screen bounds
 - handle window resize
 
 ### In the future

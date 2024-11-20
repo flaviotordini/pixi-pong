@@ -41,6 +41,11 @@ export class Paddle extends Sprite {
         this.pointsText.text = this.points.toString();
     }
 
+    resetPoints() {
+        this.points = 0;
+        this.pointsText.text = this.points.toString();
+    }
+
     tick(delta) {
         const maxSpeedIncrement = 12;
         const halfPaddleHeight = this.height / 2;
@@ -54,6 +59,8 @@ export class Paddle extends Sprite {
             if (ball.x * factor < xLimit * factor) {
                 if (ball.y < paddle.y + halfPaddleHeight
                     && ball.y > paddle.y - halfPaddleHeight) {
+
+                    // impact with ball
 
                     ball.x = xLimit;
 
@@ -69,10 +76,19 @@ export class Paddle extends Sprite {
                     sound.play(this.conf.id);
 
                 } else {
-                    this.app.state.turn = !this.app.state.turn;
-                    ball.initPos();
+
+                    // point
+                    ball.visible = false;
+
                     const otherPaddleIndex = this.conf.isLeft ? 1 : 0;
-                    this.app.state.paddles[otherPaddleIndex].incrementPoints();
+                    const otherPaddle = this.app.state.paddles[otherPaddleIndex];
+                    otherPaddle.incrementPoints();
+                    if (otherPaddle.points === 10) {
+                        this.app.state.menu.visible = true;
+                    } else {
+                        this.app.state.turn = !this.app.state.turn;
+                        ball.initPos();
+                    }
                 }
             }
         }

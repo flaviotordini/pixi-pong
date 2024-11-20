@@ -70,6 +70,6 @@ import { Menu } from './menu.mjs';
         }
     }
 
-    const menu = new Menu(app);
+    app.state.menu = new Menu(app);
 
 })()
