@@ -22,9 +22,7 @@ export class Menu extends PIXI.Container {
         this.startText.y = 0;
         this.addChild(this.startText);
 
-        this.startText.eventMode = 'static';
-        this.startText.cursor = 'pointer';
-        this.startText.on('pointerdown', () => {
+        const startMatch = () => {
             this.visible = false;
 
             for (const paddle of app.state.paddles) {
@@ -33,12 +31,18 @@ export class Menu extends PIXI.Container {
         
             app.state.turn = Math.random() < 0.5;
             app.state.ball.initPos();
-        });
+        };
+
+        this.startText.eventMode = 'static';
+        this.startText.cursor = 'pointer';
+        this.startText.on('pointerdown', startMatch);
 
         document.addEventListener('keydown', (key) => {
             if (key.key === 'Escape') {
                 app.state.ball.visible = false;
                 this.visible = true;
+            } else if (key.key === ' ' || key.key === 'Enter') {
+                if (this.visible) startMatch();
             }
         });
 
