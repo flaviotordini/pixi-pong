@@ -7,8 +7,14 @@ Pong game made with PixiJS.
 - max paddles bounce range
 - paddle flicker on screen bounds
 - handle window resize
+- start with keyboard
+- pause game (P)
 
 ### In the future
+
+#### Mobile
+- touch events
+- fullscreen
 
 #### power-ups
 - bigger paddle

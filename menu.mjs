@@ -35,5 +35,12 @@ export class Menu extends PIXI.Container {
             app.state.ball.initPos();
         });
 
+        document.addEventListener('keydown', (key) => {
+            if (key.key === 'Escape') {
+                app.state.ball.visible = false;
+                this.visible = true;
+            }
+        });
+
     }
 }
