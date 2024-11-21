@@ -28,7 +28,7 @@ export class Menu extends PIXI.Container {
             for (const paddle of app.state.paddles) {
                 paddle.resetPoints();
             }
-        
+
             app.state.turn = Math.random() < 0.5;
             app.state.ball.initPos();
         };
@@ -43,6 +43,13 @@ export class Menu extends PIXI.Container {
                 this.visible = true;
             } else if (key.key === ' ' || key.key === 'Enter') {
                 if (this.visible) startMatch();
+            } else if (key.key === 'p' || key.key === 'Pause') {
+                let ticker = app.ticker;
+                if (ticker.started) {
+                    ticker.stop();
+                } else {
+                    ticker.start();
+                }
             }
         });
 
