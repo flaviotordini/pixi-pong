@@ -38,18 +38,18 @@ export class Menu extends PIXI.Container {
         this.startText.on('pointerdown', startMatch);
 
         document.addEventListener('keydown', (key) => {
-            if (key.key === 'Escape') {
-                app.state.ball.visible = false;
-                this.visible = true;
-            } else if (key.key === ' ' || key.key === 'Enter') {
-                if (this.visible) startMatch();
-            } else if (key.key === 'p' || key.key === 'Pause') {
-                let ticker = app.ticker;
-                if (ticker.started) {
+            let ticker = app.ticker;
+            if (ticker.started) {
+                if (key.key === 'Escape') {
+                    app.state.ball.visible = false;
+                    this.visible = true;
+                } else if (key.key === ' ' || key.key === 'Enter') {
+                    if (this.visible) startMatch();
+                } else if (key.key === 'p' || key.key === 'Pause') {
                     ticker.stop();
-                } else {
-                    ticker.start();
                 }
+            } else {
+                ticker.start();
             }
         });
 
