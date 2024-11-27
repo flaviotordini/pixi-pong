@@ -18,4 +18,4 @@ Pong game made with PixiJS.
 #### power-ups
 - bigger paddle
 - power shot
-- money, one point
+- coin, one point
