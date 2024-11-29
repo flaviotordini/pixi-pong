@@ -27,6 +27,15 @@ import { Menu } from './menu.mjs';
         }
     });
 
+    app.renderer.on('resize', () => {
+        container.boundsArea.width = app.screen.width;
+        container.boundsArea.height = app.screen.height;
+        for (const sprite of app.state.sprites) {
+            sprite.resize();
+        }
+        app.state.menu.resize();
+    })
+
     app.state.ball = new Ball(app);
 
     app.state.paddles = [];

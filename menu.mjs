@@ -3,16 +3,13 @@ import * as PIXI from './pixi.min.mjs';
 export class Menu extends PIXI.Container {
     constructor(app) {
         super();
-
+        this.app = app;
         app.state.container.addChild(this);
 
         this.pivot.set(0.5)
-        this.x = app.state.container.width * .5;
-        this.y = app.state.container.height * .5;
-
+       
         const style = new PIXI.TextStyle({
             fontFamily: 'monospace',
-            fontSize: app.state.container.width / 50 * 4,
             fontWeight: 'bold',
             fill: '#ffffff',
         });
@@ -53,5 +50,13 @@ export class Menu extends PIXI.Container {
             }
         });
 
+        this.resize();
     }
+
+    resize() {
+        this.x = this.app.state.container.width * .5;
+        this.y = this.app.state.container.height * .5;
+        this.startText.style.fontSize = this.app.state.container.width / 50 * 4;
+    }
+
 }

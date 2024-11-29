@@ -9,31 +9,37 @@ export class Paddle extends Sprite {
         this.conf = conf;
         this.texture = PIXI.Texture.WHITE;
         this.anchor.set(0.5);
-        this.width = app.state.container.width / 50;
-        this.height = this.width * 4;
         this.points = 0;
 
-        if (conf.isLeft) {
-            this.x = this.width;
-        } else {
-            this.x = app.state.container.width - this.width;
-        }
-
-        this.y = app.state.container.height * .5;
         const style = new PIXI.TextStyle({
             fontFamily: 'monospace',
-            fontSize: this.height,
             fontWeight: 'bold',
             fill: '#ffffff',
         });
         this.pointsText = new PIXI.Text({ text: '0', style: style });
         this.pointsText.anchor.set(0.5);
-        this.pointsText.x = conf.isLeft ? app.state.container.width / 4 : app.state.container.width / 4 * 3;
-        this.pointsText.y = this.height;
         this.pointsText.alpha = .5;
         app.state.container.addChild(this.pointsText);
 
         sound.add(conf.id, './' + conf.id + '.mp3');
+
+        this.resize();
+    }
+
+    resize() {
+        this.width = this.app.state.container.width / 50;
+        this.height = this.width * 4;
+
+        if (this.conf.isLeft) {
+            this.x = this.width;
+        } else {
+            this.x = this.app.state.container.width - this.width;
+        }
+        this.y = this.app.state.container.height * .5;
+
+        this.pointsText.x = this.conf.isLeft ? this.app.state.container.width / 4 : this.app.state.container.width / 4 * 3;
+        this.pointsText.y = this.height;
+        this.pointsText.style.fontSize = this.height;
     }
 
     incrementPoints() {

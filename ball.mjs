@@ -4,15 +4,27 @@ import * as PIXI from './pixi.min.mjs';
 export class Ball extends Sprite {
 
     static BASE_SPEED = 13;
-    
+
     constructor(app) {
         super(app);
         this.texture = PIXI.Texture.WHITE;
         this.anchor.set(0.5);
-        this.width = app.state.container.width / 50;
-        this.height = this.width;
         this.visible = false;
         this.speed = 0;
+
+        this.resize();
+    }
+
+    resize() {
+        this.width = this.app.state.container.width / 50;
+        this.height = this.width;
+
+        // oldX : oldWidth = x : newWidth
+        this.x = this.x * this.app.state.container.width / this.oldWidth;
+        this.y = this.y * this.app.state.container.height / this.oldHeight;
+
+        this.oldWidth = this.app.state.container.width;
+        this.oldHeight = this.app.state.container.height;
     }
 
     initPos() {

@@ -15,4 +15,6 @@ export class Sprite extends PIXI.Sprite {
         this.x += this.speed * delta * Math.sin(degrees);
         this.y += -this.speed * delta * Math.cos(degrees);
     }
+
+    resize() {}
 }
