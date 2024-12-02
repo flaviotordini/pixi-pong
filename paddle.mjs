@@ -101,7 +101,6 @@ export class Paddle extends Sprite {
 
         const topLimit = this.y - halfPaddleHeight < 0;
         if (topLimit) {
-            console.log("topLimit");
             this.speed = 0;
             this.y = halfPaddleHeight;
             return;
@@ -109,7 +108,6 @@ export class Paddle extends Sprite {
 
         const bottomLimit = this.y + halfPaddleHeight > this.app.state.container.height;
         if (bottomLimit) {
-            console.log("bottomLimit");
             this.speed = 0;
             this.y = this.app.state.container.height - halfPaddleHeight;
             return;
@@ -121,7 +119,6 @@ export class Paddle extends Sprite {
     onKeyDown(key) {
         // Up
         if (key.key === this.conf.up) {
-            console.log("up");
             this.speed = 10;
             this.direction = 0;
         }
