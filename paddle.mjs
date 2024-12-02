@@ -99,14 +99,14 @@ export class Paddle extends Sprite {
             }
         }
 
-        const topLimit = this.y - halfPaddleHeight < 0;
+        const topLimit = this.y - halfPaddleHeight <= 0;
         if (topLimit) {
             this.speed = 0;
             this.y = halfPaddleHeight;
             return;
         }
 
-        const bottomLimit = this.y + halfPaddleHeight > this.app.state.container.height;
+        const bottomLimit = this.y + halfPaddleHeight >= this.app.state.container.height;
         if (bottomLimit) {
             this.speed = 0;
             this.y = this.app.state.container.height - halfPaddleHeight;
