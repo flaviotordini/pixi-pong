@@ -63,8 +63,9 @@ export class Paddle extends Sprite {
 
         if (ball.visible) {
             if (ball.x * factor < xLimit * factor) {
-                if (ball.y < paddle.y + halfPaddleHeight
-                    && ball.y > paddle.y - halfPaddleHeight) {
+                let halfBallHeight = ball.height / 2;
+                if (ball.y < paddle.y + halfPaddleHeight + halfBallHeight
+                    && ball.y > paddle.y - halfPaddleHeight - halfBallHeight) {
 
                     // impact with ball
 

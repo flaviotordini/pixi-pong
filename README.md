@@ -5,7 +5,6 @@ Pong game made with PixiJS.
 ## TODO
 
 - max paddles bounce range
-- fix paddle impact size
 - paddle size relative to screen height and width
 
 ### In the future
