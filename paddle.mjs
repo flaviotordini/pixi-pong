@@ -75,6 +75,20 @@ export class Paddle extends Sprite {
                     const spinDegrees = (impactY * 90 / paddle.height) - 45;
                     ball.direction = -ball.direction + spinDegrees * factor;
 
+                    // clip ball direction
+                    const minDegrees = 15;
+                    ball.direction = ball.direction % 360;
+                    ball.direction = (ball.direction + 360) % 360;
+                    if (ball.direction < minDegrees) {
+                        ball.direction = minDegrees;
+                    } else if (ball.direction > 360 - minDegrees) {
+                        ball.direction = 360 - minDegrees;
+                    } else if (ball.direction > 180 - minDegrees && ball.direction < 180) {
+                        ball.direction = 180 - minDegrees;
+                    } else if (ball.direction > 180 && ball.direction < 180 + minDegrees) {
+                        ball.direction = 180 + minDegrees;
+                    }
+
                     const distanceFromPaddleCenter = Math.abs(paddle.y - ball.y);
                     // distanceFromPaddleCenter : maxDistance = x : maxSpeedIncrement
                     const speedIncrement = (distanceFromPaddleCenter * maxSpeedIncrement / halfPaddleHeight);
