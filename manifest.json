@@ -3,10 +3,8 @@
     "short_name": "Pong",
     "theme_color": "#1099bb",
     "background_color": "#1099bb",
-    "display": "fullScreen",
+    "display": "fullscreen",
     "orientation": "landscape",
-    "scope": "/",
-    "start_url": "/",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
