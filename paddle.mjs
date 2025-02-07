@@ -131,27 +131,39 @@ export class Paddle extends Sprite {
         super.tick(delta);
     }
 
+    moveUp() {
+        this.speed = 10;
+        this.direction = 0;
+    }
+
+    moveDown() {
+        this.speed = 10;
+        this.direction = 180;
+    }
+
+    stop() {
+        this.speed = 0;
+    }
+
     onKeyDown(key) {
         // Up
         if (key.key === this.conf.up) {
-            this.speed = 10;
-            this.direction = 0;
+            this.moveUp();
         }
         // Down
         if (key.key === this.conf.down) {
-            this.speed = 10;
-            this.direction = 180;
+            this.moveDown();
         }
     }
 
     onKeyUp(key) {
         // Up
         if (key.key === this.conf.up) {
-            this.speed = 0;
+            this.stop();
         }
         // Down
         if (key.key === this.conf.down) {
-            this.speed = 0;
+            this.stop();
         }
     }
 

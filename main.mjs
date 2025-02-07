@@ -18,6 +18,27 @@ import { Menu } from './menu.mjs';
     app.stage.addChild(container);
     container.boundsArea = new PIXI.Rectangle(0, 0, app.screen.width, app.screen.height);
 
+    container.eventMode = 'static';
+    container.hitArea = container.boundsArea;
+    function paddleForEvent(event) {
+        let isLeft = event.data.global.x < container.width * .5;
+        let paddleIndex = isLeft ? 0 : 1;
+        return app.state.paddles[paddleIndex];
+    }
+    container.on('pointerdown', (event) => {
+        let paddle = paddleForEvent(event);
+        let isTop = event.data.y < container.height * .5;
+        if (isTop) {
+            paddle.moveUp();
+        } else {
+            paddle.moveDown();
+        }
+    });
+    container.on('pointerup', (event) => {
+        let paddle = paddleForEvent(event);
+        paddle.stop();
+    });
+
     app.state = {};
     app.state.container = container;
     app.state.sprites = [];
