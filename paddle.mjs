@@ -141,8 +141,16 @@ export class Paddle extends Sprite {
         this.direction = 180;
     }
 
-    stop() {
-        this.speed = 0;
+    stopUp() {
+        if (this.direction === 0) {
+            this.speed = 0;
+        }
+    }
+
+    stopDown() {
+        if (this.direction === 180) {
+            this.speed = 0;
+        }
     }
 
     onKeyDown(key) {
@@ -159,11 +167,11 @@ export class Paddle extends Sprite {
     onKeyUp(key) {
         // Up
         if (key.key === this.conf.up) {
-            this.stop();
+            this.stopUp();
         }
         // Down
         if (key.key === this.conf.down) {
-            this.stop();
+            this.stopDown();
         }
     }
 

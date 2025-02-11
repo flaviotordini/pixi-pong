@@ -36,7 +36,12 @@ import { Menu } from './menu.mjs';
     });
     container.on('pointerup', (event) => {
         let paddle = paddleForEvent(event);
-        paddle.stop();
+        let isTop = event.data.y < container.height * .5;
+        if (isTop) {
+            paddle.stopUp();
+        } else {
+            paddle.stopDown();
+        }
     });
 
     app.state = {};

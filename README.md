@@ -4,6 +4,7 @@ Pong game made with PixiJS.
 
 ## TODO
 
+- ball speed
 - paddle size relative to screen height and width
 
 ### In the future
