@@ -107,4 +107,15 @@ import { Menu } from './menu.mjs';
 
     app.state.menu = new Menu(app);
 
+    app.goFullscreen = function() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        }
+        if (screen.orientation) {
+            if (screen.orientation.type != "landscape") {
+                screen.orientation.lock("landscape");
+            }
+        }
+    }
+
 })()
