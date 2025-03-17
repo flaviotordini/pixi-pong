@@ -11,9 +11,9 @@ export class Sprite extends PIXI.Sprite {
     }
 
     tick(delta) {
-        const degrees = this.direction * (Math.PI / 180);
-        this.x += this.speed * delta * Math.sin(degrees);
-        this.y += -this.speed * delta * Math.cos(degrees);
+        const radiants = this.direction * (Math.PI / 180);
+        this.x += this.speed * delta * Math.sin(radiants);
+        this.y += -this.speed * delta * Math.cos(radiants);
     }
 
     resize() {}
