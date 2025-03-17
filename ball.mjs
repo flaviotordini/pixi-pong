@@ -3,7 +3,7 @@ import * as PIXI from './pixi.min.mjs';
 
 export class Ball extends Sprite {
 
-    static BASE_SPEED = 13;
+    static BASE_SPEED = 5;
 
     constructor(app) {
         super(app);
