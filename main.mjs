@@ -56,10 +56,14 @@ import { Menu } from './menu.mjs';
     app.renderer.on('resize', () => {
         container.boundsArea.width = app.screen.width;
         container.boundsArea.height = app.screen.height;
-        for (const sprite of app.state.sprites) {
-            sprite.resize();
+
+        function lazyResize() {
+            for (const sprite of app.state.sprites) {
+                sprite.resize();
+            }
+            app.state.menu.resize();
         }
-        app.state.menu.resize();
+        setTimeout(lazyResize, 100);
     })
 
     app.state.ball = new Ball(app);
