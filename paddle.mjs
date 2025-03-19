@@ -4,6 +4,9 @@ import { Ball } from "./ball.mjs";
 import { sound } from './pixi-sound.mjs';
 
 export class Paddle extends Sprite {
+
+    static SPEED_FACTOR = 0.4;
+
     constructor(app, conf) {
         super(app);
         this.conf = conf;
@@ -132,12 +135,12 @@ export class Paddle extends Sprite {
     }
 
     moveUp() {
-        this.speed = 10;
+        this.speed = this.width * Paddle.SPEED_FACTOR;
         this.direction = 0;
     }
 
     moveDown() {
-        this.speed = 10;
+        this.speed = this.width * Paddle.SPEED_FACTOR;
         this.direction = 180;
     }
 
