@@ -53,7 +53,7 @@ export class Paddle extends Sprite {
     }
 
     tick(delta) {
-        const maxSpeedIncrement = 9;
+        const maxSpeedIncrement = 5;
         const halfPaddleHeight = this.height / 2;
 
         const paddle = this;
@@ -92,7 +92,7 @@ export class Paddle extends Sprite {
                     const distanceFromPaddleCenter = Math.abs(paddle.y - ball.y);
                     // distanceFromPaddleCenter : maxDistance = x : maxSpeedIncrement
                     const speedIncrement = (distanceFromPaddleCenter * maxSpeedIncrement / halfPaddleHeight);
-                    ball.speed = Ball.BASE_SPEED + speedIncrement;
+                    ball.speed = ball.width * Ball.SPEED_FACTOR + speedIncrement;
 
                     sound.play(this.conf.id);
 

@@ -3,7 +3,7 @@ import * as PIXI from './pixi.min.mjs';
 
 export class Ball extends Sprite {
 
-    static BASE_SPEED = 5;
+    static SPEED_FACTOR = 0.4;
 
     constructor(app) {
         super(app);
@@ -22,6 +22,7 @@ export class Ball extends Sprite {
         // oldX : oldWidth = x : newWidth
         this.x = this.x * this.app.state.container.width / this.oldWidth;
         this.y = this.y * this.app.state.container.height / this.oldHeight;
+        this.speed = this.speed * this.app.state.container.width / this.oldWidth;
 
         this.oldWidth = this.app.state.container.width;
         this.oldHeight = this.app.state.container.height;
@@ -34,7 +35,7 @@ export class Ball extends Sprite {
         if (this.app.state.turn) {
             this.direction += 180;
         }
-        this.speed = Ball.BASE_SPEED;
+        this.speed = this.width * Ball.SPEED_FACTOR;
         this.visible = true;
     }
 
