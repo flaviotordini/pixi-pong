@@ -79,7 +79,7 @@ export class Paddle extends Sprite {
                     ball.direction = -ball.direction + spinDegrees * factor;
 
                     // clip ball direction
-                    const minDegrees = 15;
+                    const minDegrees = 45;
                     ball.direction = ball.direction % 360;
                     ball.direction = (ball.direction + 360) % 360;
                     if (ball.direction < minDegrees) {
