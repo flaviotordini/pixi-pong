@@ -6,7 +6,6 @@ Pong game made with PixiJS.
 
 - paddle size relative to screen height and width
 - better fullscreen and install UI
-- fix mouse events
 
 ### In the future
 

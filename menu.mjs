@@ -30,7 +30,10 @@ export class Menu extends PIXI.Container {
         };
         this.startText.eventMode = 'static';
         this.startText.cursor = 'pointer';
-        this.startText.on('pointerdown', startMatch);
+        this.startText.on('pointerdown', (event) => {
+            event.stopPropagation();
+            startMatch();
+        });
 
         this.fullscreenText = new PIXI.Text({ text: 'Fullscreen', style: style});
         this.fullscreenText.anchor.set(0.5);
@@ -38,7 +41,10 @@ export class Menu extends PIXI.Container {
         this.addChild(this.fullscreenText);
         this.fullscreenText.eventMode = 'static';
         this.fullscreenText.cursor = 'pointer';
-        this.fullscreenText.on('pointerdown', () => this.app.goFullscreen());
+        this.fullscreenText.on('pointerdown', (event) =>  {
+            event.stopPropagation();
+            this.app.goFullscreen();
+        });
 
         document.addEventListener('keydown', (key) => {
             let ticker = app.ticker;

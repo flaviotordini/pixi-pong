@@ -26,6 +26,7 @@ import { Menu } from './menu.mjs';
         return app.state.paddles[paddleIndex];
     }
     container.on('pointerdown', (event) => {
+        event.stopPropagation();
         let paddle = paddleForEvent(event);
         let isTop = event.data.y < container.height * .5;
         if (isTop) {
@@ -35,6 +36,7 @@ import { Menu } from './menu.mjs';
         }
     });
     container.on('pointerup', (event) => {
+        event.stopPropagation();
         let paddle = paddleForEvent(event);
         let isTop = event.data.y < container.height * .5;
         if (isTop) {
