@@ -4,8 +4,8 @@ Pong game made with PixiJS.
 
 ## TODO
 
-- paddle size relative to screen height and width
-- better fullscreen and install UI
+- paddle size relative to screen height and width ?
+- better fullscreen and install UI ?
 
 ### In the future
 
