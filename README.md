@@ -1,6 +1,8 @@
 # Pong
 
-Pong game made with PixiJS.
+![](https://raw.githubusercontent.com/flaviotordini/pixi-pong/refs/heads/master/android-chrome-192x192.png)
+
+Pong game made with PixiJS. My son and I made this to learn Javascript and game dev. This game is only for two players, so make sure to have a friend near you.
 
 ## TODO
 
